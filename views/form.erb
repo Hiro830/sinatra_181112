@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Sinatra Tutorial</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="text/javascript" src="/js/script.js"></script>
+</head>
+
+<body>
+  <h1>Form</h1>
+
+  <form action="/form" method="POST" enctype="multipart/form-data">
+    <label for="name">名前：</label>
+    <input type="text" name="name" id="name" />
+
+    <label for="email">メールアドレス：</label>
+    <input type="email" name="email" id="email" />
+
+    <label for="content">内容：</label>
+    <input type="text" name="content" id="content"/>
+
+    <input type="file" name="file">
+
+    <input type="submit" value="送信する">
+  </form>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Content</th>
+      <th>picture</th>
+    </tr>
+
+    <% @data.each do |datum| %>
+      <tr>
+        <td><%= datum['name'] %></td>
+        <td><%= datum['email'] %></td>
+        <td><%= datum['content'] %></td>
+        <td>
+          <% if datum['file'] %>
+            <img src="/image/<%= datum['file'] %>" />
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+</body>
+</html>
